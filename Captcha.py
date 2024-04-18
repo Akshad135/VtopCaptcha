@@ -27,10 +27,9 @@ wait = WebDriverWait(driver, 10)
 expected_condition = EC.presence_of_element_located((By.XPATH, "//img[contains(@src, 'data:image/jpeg;base64,') and contains(@aria-describedby, 'button-addon2')]"))
 
 try:
-  # Wait for the image element to be present
+
   image_element = wait.until(expected_condition)
 
-  # Extract the base64 string
   image_src = image_element.get_attribute("src")
   start_index = image_src.find("data:image/jpeg;base64,") + len("data:image/jpeg;base64,")
   end_index = image_src.find("aria-describedby=")
@@ -39,9 +38,8 @@ try:
   print("Extracted base64 string:", base64_string)
 except TimeoutException:
   print("Image element not found within the timeout window")
-  # Increase timeout if necessary
 
-time.sleep(20)  # Adjust the sleep time as needed
+time.sleep(20)  
 
 print(title)
 
