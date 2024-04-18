@@ -15,24 +15,31 @@
 # image_string = find_between(response.text, 'btn btn-info fw-bold"', '</button>')
 # print(image_string)
 
-# from selenium import webdriver
-# from selenium.webdriver.common.by import By
-# import time
 
-# chrome_options = webdriver.ChromeOptions()
-# chrome_options.binary_location = r'C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe'
-# driver = webdriver.Chrome(options=chrome_options)
-# driver.get('https://vtop.vitbhopal.ac.in/vtop/login')
-# title = driver.title
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+import time
 
-# # Find buttons with specific class
-# buttons = driver.find_elements(By.CSS_SELECTOR, '.btn.btn-primary.fw-bold')
-# num_buttons = len(buttons)
+chrome_options = webdriver.ChromeOptions()
+chrome_options.binary_location = r'C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe'
+driver = webdriver.Chrome(options=chrome_options)
+driver.get('https://vtop.vitbhopal.ac.in/vtop/login')
+title = driver.title
 
-# time.sleep(5)
+# Find buttons with specific class
+buttons = driver.find_elements(By.CSS_SELECTOR, '.btn.btn-primary.fw-bold')
 
-# print(title)
-# print(num_buttons)
+# Click the first button (assuming you only want to click the first one)
+if buttons:
+  first_button = buttons[0]
+  first_button.click()
+  print("Clicked the first button with class 'btn btn-primary fw-bold'")
+else:
+  print("No buttons found with class 'btn btn-primary fw-bold'")
+
+time.sleep(5)  # Adjust the sleep time as needed
+
+
 
 
 
