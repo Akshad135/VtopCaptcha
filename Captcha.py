@@ -24,9 +24,8 @@ buttons = driver.find_elements(By.CSS_SELECTOR, '.btn.btn-primary.fw-bold')
 if buttons:
     first_button = buttons[0]
     first_button.click()
-    print("Clicked the first button with class 'btn btn-primary fw-bold'")
 else:
-    print("No buttons found with class 'btn btn-primary fw-bold'")
+    print("Skill issue. Exiting...")
 
 wait = WebDriverWait(driver, 10)
 attempt = 0
@@ -39,7 +38,6 @@ while attempt <= max_attempts:
         start_index = image_src.find("data:image/jpeg;base64,") + len("data:image/jpeg;base64,")
         end_index = image_src.find("aria-describedby=")
         base64_string = image_src[start_index:end_index]
-        print("Extracted base64 string:", base64_string)
         break
     except TimeoutException:
         print("Attempt", attempt, "- Image element not found within the timeout window")
@@ -48,7 +46,7 @@ while attempt <= max_attempts:
             driver.refresh()
             attempt += 1
         else:
-            print("Max attempts reached. Exiting...")
+            print("Skill issue. Exiting...")
             break
 
 api_key = API_KEY
@@ -71,17 +69,19 @@ if response.status_code == 200:
     captcha_input.send_keys(captcha_id)
 
     username_input = driver.find_element(By.ID, 'username')
-    username_input.send_keys("22BAI10309")
+    # ! add your registration number incase the env doesn't work
+    username_input.send_keys("Your Registration Number")
 
     password_input = driver.find_element(By.ID, 'password')
     password_input.send_keys(password)
 
     button1 = driver.find_element(By.CSS_SELECTOR, '.btn.btn-sm.btn-primary.float-end')
     button1.click()
-    print("Clicked the first button with class '.btn.btn-sm.btn-primary.float-end'")
-
+    while driver.window_handles:
+        pass
+    driver.quit()
 
 else:
     print("Error:", response.text)
 
-time.sleep(30)
+# time.sleep(30)
