@@ -9,6 +9,9 @@ import time
 import os
 
 load_dotenv()
+API_KEY = os.getenv("API_KEY")
+# user = os.getenv("USERNAME")
+password = os.getenv("password")
 
 chrome_options = webdriver.ChromeOptions()
 chrome_options.binary_location = r'C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe'
@@ -48,7 +51,7 @@ while attempt <= max_attempts:
             print("Max attempts reached. Exiting...")
             break
 
-api_key = os.getenv("API_KEY")
+api_key = API_KEY
 
 url = "https://ocr.captchaai.com/solve.php"
 
@@ -66,6 +69,18 @@ if response.status_code == 200:
     print("Captcha ID:", captcha_id)
     captcha_input = driver.find_element(By.CLASS_NAME, 'form-control.form-control-sm')
     captcha_input.send_keys(captcha_id)
+
+    username_input = driver.find_element(By.ID, 'username')
+    username_input.send_keys("22BAI10309")
+
+    password_input = driver.find_element(By.ID, 'password')
+    password_input.send_keys(password)
+
+    button1 = driver.find_element(By.CSS_SELECTOR, '.btn.btn-sm.btn-primary.float-end')
+    button1.click()
+    print("Clicked the first button with class '.btn.btn-sm.btn-primary.float-end'")
+
+
 else:
     print("Error:", response.text)
 
