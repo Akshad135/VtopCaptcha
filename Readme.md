@@ -14,4 +14,3 @@ To use it yourself:
 - Install requirements.txt
 
 This project uses [CaptchaAI](https://captchaai.com/) to solve the reCaptcha.
-You can also adjust the sleep time for the driver, I have kept it at 30secs by default.
